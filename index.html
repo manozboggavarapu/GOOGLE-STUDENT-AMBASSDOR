@@ -3,13 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Best Gemini Features | GSA </title>
+<title>Best Gemini Features | GSA</title>
 
 <!-- Link CSS -->
 <link rel="stylesheet" href="style.css">
 
 <!-- AOS for scroll animations -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<style>
+/* Optional popup-block warning styling */
+#popup-warning {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffcccc;
+  color: #900;
+  border: 1px solid #900;
+  border-radius: 5px;
+}
+</style>
 </head>
 <body>
 
@@ -19,13 +31,11 @@
     <h1>Explore Gemini Features</h1>
     <p>Hi! I’m a Google Student Ambassador, and I’m always looking to improve my engagement and skills. By clicking the button below, you can launch all interactive prompts to explore projects, tools, and resources designed to help me grow my ambassador journey. Your support will help me participate more effectively and make a bigger impact!</p>
     <button onclick="openAllLinks()">Launch All Prompts 🚀</button>
+    <div id="popup-warning">⚠️ Popups were blocked! Please allow popups for this site to launch all prompts.</div>
   </div>
   <div class="hero-right">
-    <!-- 3D model removed -->
-    <!-- Optional: Add an animated div or video later -->
-    <div class="hero-animation">
-      <!-- Example animation or leave empty -->
-    </div>
+    <!-- Optional animation div -->
+    <div class="hero-animation"></div>
   </div>
 </section>
 
@@ -61,7 +71,7 @@
 <!-- Footer -->
 <footer>Made with 💻 by Manoj | Google Student Ambassador </footer>
 
-<!-- Open All Links Script -->
+<!-- Open All Links Script with popup-block detection -->
 <script>
 function openAllLinks() {
   const links = [
@@ -71,7 +81,22 @@ function openAllLinks() {
     "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=21",
     "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=22"
   ];
-  links.forEach(url => window.open(url, "_blank"));
+
+  let popupBlocked = false;
+
+  links.forEach((url, index) => {
+    setTimeout(() => {
+      const newWindow = window.open(url, "_blank");
+      if (!newWindow) {
+        popupBlocked = true;
+      }
+
+      // Show warning if any popup is blocked
+      if (index === links.length - 1 && popupBlocked) {
+        document.getElementById("popup-warning").style.display = "block";
+      }
+    }, index * 500);
+  });
 }
 </script>
 
