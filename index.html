@@ -21,15 +21,183 @@
   border: 1px solid #900;
   border-radius: 5px;
 }
+
+/* Popup info styling */
+.popup-info {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background-color: #fff8e1;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* First notification style - top bar */
+#browser-notification-top {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffc107;
+  color: #000;
+  padding: 12px 20px;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#browser-notification-top .notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#browser-notification-top .arrow {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+#browser-notification-top .message {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Second notification style - rounded box */
+#browser-notification-box {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffc107;
+  color: #000;
+  padding: 15px 25px;
+  border-radius: 10px;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 90%;
+  text-align: center;
+}
+
+#browser-notification-box .notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#browser-notification-box .icon {
+  margin-right: 12px;
+  font-size: 22px;
+}
+
+#browser-notification-box .message {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* New: right-side notification banner near address bar */
+#browser-notification-right {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #ffc107;
+  color: #000;
+  padding: 10px 14px;
+  border-radius: 8px;
+  z-index: 10000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+#browser-notification-right .message {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@keyframes updown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
 </style>
 </head>
 <body>
+
+<!-- Top browser notification bar -->
+<div id="browser-notification-top">
+  <div class="notification-content">
+    <div class="arrow">↑</div>
+    <div class="message">Pop-up blocked! Click Allow in your browser toolbar.</div>
+  </div>
+</div>
+
+<!-- Box browser notification -->
+<div id="browser-notification-box">
+  <div class="notification-content">
+    <div class="icon">⚠️</div>
+    <div class="message">Pop-ups Blocked! Enable pop-ups to launch prompts successfully.</div>
+  </div>
+</div>
+
+<!-- Right-side browser notification -->
+<div id="browser-notification-right"><span class="message">Pop-ups Blocked! Click Allow near the address bar.</span></div>
 
 <!-- Hero Section -->
 <section class="hero" data-aos="fade-up">
   <div class="hero-left">
     <h1>Explore Gemini Features</h1>
-    <p>Hi! I’m a Google Student Ambassador, and I’m always looking to improve my engagement and skills. By clicking the button below, you can launch all interactive prompts to explore projects, tools, and resources designed to help me grow my ambassador journey. Your support will help me participate more effectively and make a bigger impact!</p>
+    <p>Hi! I'm a Google Student Ambassador, and I'm always looking to improve my engagement and skills. By clicking the button below, you can launch all interactive prompts to explore projects, tools, and resources designed to help me grow my ambassador journey. Your support will help me participate more effectively and make a bigger impact!</p>
+<div class="popup-info">
+  <p><strong>⚠️ Important:</strong> Please allow pop-ups in your browser for this site to launch all prompts successfully.</p>
+</div>
+
+<style>
+.popup-info {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.popup-info strong {
+  font-size: 18px;
+}
+
+.popup-info::before {
+  content: "💡";
+  font-size: 30px;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #1e3c72;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional hover effect */
+.popup-info:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+</style>
+
     <button onclick="openAllLinks()">Launch All Prompts 🚀</button>
     <div id="popup-warning">⚠️ Popups were blocked! Please allow popups for this site to launch all prompts.</div>
   </div>
@@ -73,6 +241,17 @@
 
 <!-- Open All Links Script with popup-block detection -->
 <script>
+function showRightNotification(message, duration) {
+  var el = document.getElementById('browser-notification-right');
+  if (!el) return;
+  var msgEl = el.querySelector('.message');
+  if (msgEl) { msgEl.textContent = message; }
+  el.style.display = 'block';
+  if (duration && duration > 0) {
+    setTimeout(function() { el.style.display = 'none'; }, duration);
+  }
+}
+
 function openAllLinks() {
   const links = [
     "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=18",
@@ -82,19 +261,54 @@ function openAllLinks() {
     "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=22"
   ];
 
-  let popupBlocked = false;
+  // First check if popups are allowed by trying to open a test popup
+  const testWindow = window.open('about:blank', '_blank');
+  
+  if (testWindow === null || typeof testWindow === 'undefined') {
+    // Popups are blocked - show right-side banner near address bar
+    document.getElementById("popup-warning").style.display = "block";
+    showRightNotification('Pop-ups blocked. Click Allow near the address bar.', 15000);
+    
+    // Add event listener to detect when user allows popups
+    window.addEventListener('focus', function popupAllowedHandler() {
+      // Check if we can open a popup now
+      const retryWindow = window.open('about:blank', '_blank');
+      if (retryWindow) {
+        // Popups are now allowed
+        retryWindow.close();
+        
+        // Hide warnings and show allowed notice
+         document.getElementById("popup-warning").style.display = "none";
+         showRightNotification('Pop-ups allowed. Launching prompts…', 4000);
+        
+        // Now open all the links
+        openAllTabsAfterAllowed();
+        
+        // Remove this event listener
+        window.removeEventListener('focus', popupAllowedHandler);
+      }
+    });
+  } else {
+    // Popups are allowed - close test window and show notice
+    testWindow.close();
+    showRightNotification('↑ Pop-ups Not allowed.Please Allow Pop-ups In Above URL Tool Bar', 4000);
+    openAllTabsAfterAllowed();
+  }
+}
 
+// Function to open all tabs after popups are allowed
+function openAllTabsAfterAllowed() {
+  const links = [
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=18",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=19",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=20",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=21",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=22"
+  ];
+  
   links.forEach((url, index) => {
     setTimeout(() => {
-      const newWindow = window.open(url, "_blank");
-      if (!newWindow) {
-        popupBlocked = true;
-      }
-
-      // Show warning if any popup is blocked
-      if (index === links.length - 1 && popupBlocked) {
-        document.getElementById("popup-warning").style.display = "block";
-      }
+      window.open(url, "_blank");
     }, index * 500);
   });
 }
