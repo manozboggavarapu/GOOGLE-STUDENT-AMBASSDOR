@@ -1,0 +1,207 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a0a0a;
+  color: #fff;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+a { color: #9b5de5; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 5% 7%;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero-left h1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+.hero-left p {
+  font-size: 1.25rem;
+  opacity: 0.85;
+  margin-bottom: 30px;
+  animation: fadeInUp 1.4s ease forwards;
+  opacity: 0;
+}
+
+/* Breathing Gradient Button */
+.hero-left button {
+  background: linear-gradient(270deg, #9b5de5, #00bbf9, #ff6f61, #9b5de5);
+  background-size: 800% 800%;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: gradientAnimation 6s ease infinite, pulse 2s ease-in-out infinite;
+}
+
+/* Gradient Movement Animation */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Breathing / Pulse Animation */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(155, 93, 229, 0.5); }
+  50% { transform: scale(1.08); box-shadow: 0 0 25px rgba(155, 93, 229, 0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(155, 93, 229, 0.5); }
+}
+
+/* Hover effect for extra interactivity */
+.hero-left button:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 40px rgba(155, 93, 229, 1);
+}
+
+/* Hero Right 3D Model */
+.hero-right {
+  flex: 1.2;
+  min-width: 300px;
+  max-width: 900px;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInRight 1.5s ease forwards;
+  opacity: 0;
+  position: relative;
+}
+
+.hero-right spline-viewer {
+  width: 100%;
+  height: 100%;
+  max-width: 100%; 
+  max-height: 100%;
+  border-radius: 20px;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1.05); }
+  50% { transform: translateY(-20px) scale(1.07); }
+}
+
+/* Fade-in Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 5%;
+  background-color: #111;
+}
+
+.feature-card {
+  background: #1a1a1a;
+  padding: 25px;
+  border-radius: 20px;
+  width: 280px;
+  text-align: center;
+  transition: 0.4s;
+  box-shadow: 0 0 25px rgba(155, 93, 229, 0.5);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 0 35px rgba(0, 187, 249, 0.7);
+}
+
+.feature-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.feature-card button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #9b5de5, #00bbf9);
+  color: #fff;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.feature-card button:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  background-color: #111;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+  .hero-right { width: 90vw; height: 50vh; }
+  .hero-left h1 { font-size: 3rem; }
+}
+
+@media (max-width: 768px) {
+  .hero-right { width: 90vw; height: 45vh; }
+  .feature-card { width: 90%; }
+}
+
+@media (max-width: 480px) {
+  .hero-left h1 { font-size: 2.2rem; }
+  .hero-left p { font-size: 1rem; }
+  .feature-card { padding: 20px; }
+}

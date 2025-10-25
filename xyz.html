@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Gemini Features | GSA </title>
+
+<!-- Link CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- AOS for scroll animations -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero" data-aos="fade-up">
+  <div class="hero-left">
+    <h1>Explore Gemini Features</h1>
+    <p>Hi! I’m a Google Student Ambassador, and I’m always looking to improve my engagement and skills. By clicking the button below, you can launch all interactive prompts to explore projects, tools, and resources designed to help me grow my ambassador journey. Your support will help me participate more effectively and make a bigger impact!</p>
+    <button onclick="openAllLinks()">Launch All Prompts 🚀</button>
+  </div>
+  <div class="hero-right">
+    <!-- 3D model removed -->
+    <!-- Optional: Add an animated div or video later -->
+    <div class="hero-animation">
+      <!-- Example animation or leave empty -->
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features" data-aos="fade-up">
+  <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+    <h3>Interactive Learning</h3>
+    <p>Engage with AI-driven modules to improve your coding & analytics skills.</p>
+    <button onclick="window.open('https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=18','_blank')">Prompt 1</button>
+  </div>
+  <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+    <h3>Project Guidance</h3>
+    <p>Get mentorship for real-world projects to enhance your portfolio.</p>
+    <button onclick="window.open('https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=19','_blank')">Prompt 2</button>
+  </div>
+  <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+    <h3>Collaboration Tools</h3>
+    <p>Work seamlessly with peers using collaboration tools for ambassadors.</p>
+    <button onclick="window.open('https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=20','_blank')">Prompt 3</button>
+  </div>
+  <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+    <h3>Analytics Dashboard</h3>
+    <p>Track your progress and get insights into your engagement.</p>
+    <button onclick="window.open('https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=21','_blank')">Prompt 4</button>
+  </div>
+  <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+    <h3>Community & Events</h3>
+    <p>Participate in exclusive workshops and events with ambassadors.</p>
+    <button onclick="window.open('https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=22','_blank')">Prompt 5</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>Made with 💻 by Manoj | Google Student Ambassador </footer>
+
+<!-- Open All Links Script -->
+<script>
+function openAllLinks() {
+  const links = [
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=18",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=19",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=20",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=21",
+    "https://aiskillshouse.com/student/qr-mediator.html?uid=4882&promptId=22"
+  ];
+  links.forEach(url => window.open(url, "_blank"));
+}
+</script>
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1200 });
+</script>
+
+</body>
+</html>
